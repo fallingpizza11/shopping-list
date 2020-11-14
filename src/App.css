@@ -1,5 +1,83 @@
+:root{
+  --bg-color-one: #282c34;
+  --bg-color-two: #333842;
+  --bg-color-three: #3d4147;
+
+  --selected: #BB86FC;
+}
+
 .App {
   text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App textarea {
+  resize: none;
+  border-radius: 5px;
+  border: inset;
+  border-right-style: outset;
+  border-bottom-style: outset;
+  border-color: var(--bg-color-three);
+
+  background: var(--bg-color-three);
+  color: white;
+  border-width: 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #fff var(--bg-color-three);
+
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.App textarea::-webkit-scrollbar {
+  width: 0.5vmin;
+  background: var(--bg-color-three);
+  cursor: help;
+  border-radius: 10px;
+  margin-right: 50px;
+
+}
+.App textarea::-webkit-scrollbar-thumb {
+  background: #fff;
+  cursor: help;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.App #submit-button {
+  border: inset;
+  padding: 0;
+  margin:0;
+  border-radius: 4px;
+  border-width: 1px;
+  background: var(--bg-color-three);
+
+  color: #fff;
+}
+
+.App #submit-button:active {
+  background: var(--selected);
+}
+
+
+.App form {
+  width: 300px;
+  height: 100px;
+  /* TODO: not sure if grid is the best option here */
+  display: grid;
+  row-gap: 18px;
 }
 
 .App-logo {
@@ -13,16 +91,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .App-link {
   color: #61dafb;
