@@ -15,29 +15,33 @@ class App extends Component {
   }
 
   /**
+   * Trims the users input and sets the state of the list array to a new list
+   * with the added list item, if the list item has text in it
    * 
    * @param {Event} event submit event from form
    */
   addToList(event) {
     event.preventDefault()
-    this.setState(oldState => ({
-      list: [...oldState.list, this.state.input]
-    }))
+    let input = this.state.input.trim()
+    if(input !== '') {
+      this.setState(oldState => ({
+        list: [...oldState.list, input]
+      }))
+    }
     this.setState({input: ''})
   }
 
   /**
-   * adds an element to the array
+   * syncs the reactDOM with the real DOM by updating the state of 'input'
+   * whenever the user types something into the textarea
+   * 
    * @param {Event} event change event from the textarea
    */
   syncTextArea(event) {
     this.setState({ input: event.target.value})
-    // console.log(this.state.input);
   }
 
   componentDidUpdate() {
-    console.log(this.state.list)
-    console.log('the input is: ' + this.state.input);
 
   }
 
