@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -78,6 +78,33 @@
   /* TODO: not sure if grid is the best option here */
   display: grid;
   row-gap: 18px;
+}
+
+.App #list-head {
+
+}
+
+.App #list-body {
+  padding: 0;
+}
+
+.App #list-body li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 80vh;
+  background: var(--bg-color-three);
+  border-radius: 5px;
+  margin-bottom: 2vh;
+  padding: 0px 2vh;
+}
+
+.App #list-body img{
+  width: 4vh;
+}
+.App #list-body img:hover{
+  cursor: pointer;
 }
 
 .App-logo {

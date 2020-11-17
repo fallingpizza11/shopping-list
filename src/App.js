@@ -12,6 +12,7 @@ class App extends Component {
 
     this.syncTextArea = this.syncTextArea.bind(this)
     this.addToList = this.addToList.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
   }
 
   /**
@@ -22,13 +23,14 @@ class App extends Component {
    */
   addToList(event) {
     event.preventDefault()
+
     let input = this.state.input.trim()
-    if(input !== '') {
+    if (input !== '') {
       this.setState(oldState => ({
         list: [...oldState.list, input]
       }))
     }
-    this.setState({input: ''})
+    this.setState({ input: '' })
   }
 
   /**
@@ -38,31 +40,42 @@ class App extends Component {
    * @param {Event} event change event from the textarea
    */
   syncTextArea(event) {
-    this.setState({ input: event.target.value})
+    this.setState({ input: event.target.value })
   }
 
-  componentDidUpdate() {
-
+  /**
+   * gets the index of the post from a child component when the user
+   * clicks on the 'delete' button
+   * @param {Event} event 
+   */
+  deleteItem(event) {
+    const postId = event.target.parentElement.id
+    let mutatedList = this.state.list.filter(element => this.state.list[postId] !== element)
+    this.setState({ list: mutatedList })
   }
 
   render() {
+
     return (
       <div className="App">
-        <h1>welcome to city 17</h1>
-        <p>you have chosen, or have been chosen</p>
-        <form 
-        onSubmit={this.addToList} 
-        onKeyDown={
-          event => {
-            if(event.key === "Enter"){
-              this.addToList(event)
-            }
-          }
-        }>
-          <textarea onChange={this.syncTextArea} value={this.state.input}></textarea>
-          <input id="submit-button" type="submit" value="Add"/>
-        </form>
-        <ShoppingList list={this.state.list}/>
+        <section id="list-head">
+          <h1>Shopping List</h1>
+          <form onSubmit={this.addToList}
+            onKeyDown={
+              event => {
+                if (event.key === "Enter") {
+                  this.addToList(event)
+                }
+              }
+            }>
+            <textarea onChange={this.syncTextArea}
+              value={this.state.input}>
+            </textarea>
+            <input id="submit-button" type="submit" value="Add To List" />
+          </form>
+        </section>
+
+        <ShoppingList onItemDeleted={this.deleteItem} list={this.state.list} />
       </div>
     );
   }
