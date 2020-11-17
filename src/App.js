@@ -1,3 +1,4 @@
+// By: Isaac Giuricich
 import { Component } from 'react';
 import './App.css';
 import ShoppingList from './ShoppingList'
@@ -34,7 +35,7 @@ class App extends Component {
   }
 
   /**
-   * syncs the reactDOM with the real DOM by updating the state of 'input'
+   * syncs the reactDOM with the real DOM by updating the 'input' state
    * whenever the user types something into the textarea
    * 
    * @param {Event} event change event from the textarea
@@ -44,8 +45,8 @@ class App extends Component {
   }
 
   /**
-   * gets the index of the post from a child component when the user
-   * clicks on the 'delete' button
+   * deletes a list item by getting the index of the post from a
+   * child component when the user clicks on the 'delete' button
    * @param {Event} event 
    */
   deleteItem(event) {
@@ -55,7 +56,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
         <section id="list-head">
@@ -74,13 +74,10 @@ class App extends Component {
             <input id="submit-button" type="submit" value="Add To List" />
           </form>
         </section>
-
         <ShoppingList onItemDeleted={this.deleteItem} list={this.state.list} />
       </div>
     );
   }
-
-
 }
 
 export default App;
